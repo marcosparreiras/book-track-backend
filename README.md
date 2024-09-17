@@ -2,7 +2,7 @@
 
 ## Requisitos funcionais
 
-- [] Deve ser possível criar um usuário comum;
+- [x] Deve ser possível criar um usuário comum;
 - [] Deve ser possível atualizar o avatar de um usuário;
 - [] Deve ser possível um administrador cadastrar um livro;
 - [] Deve ser possível listar os livros cadastrados utilizando parametros de paginação;

@@ -1,7 +1,7 @@
 import { User } from "../entities/user";
 import { UserAlreadyExistsException } from "../exceptions/user-already-exists-exception";
-import { inject } from "../registry";
-import type { UserRepository } from "../repository/user-repository";
+import { inject } from "../bondaries/registry";
+import type { UserRepository } from "../bondaries/user-repository";
 
 type Input = {
   name: string;

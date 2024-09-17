@@ -37,6 +37,10 @@ export class User {
     return this.avatarUrl;
   }
 
+  public setAvatarUrl(url: string): void {
+    this.avatarUrl = url;
+  }
+
   public isAdmin(): boolean {
     return this._isAdmin;
   }

@@ -1,7 +1,7 @@
 import { InMemoryUserRepository } from "../../adapters/in-memory-user-repository";
 import { User } from "../entities/user";
 import { UserAlreadyExistsException } from "../exceptions/user-already-exists-exception";
-import { Registry } from "../registry";
+import { Registry } from "../bondaries/registry";
 import { RegisterUserUseCase } from "./register-user-use-case";
 
 describe("RegisterUserUseCase", () => {
