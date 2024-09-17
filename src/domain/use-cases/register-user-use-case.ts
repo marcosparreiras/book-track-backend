@@ -1,5 +1,6 @@
 import { User } from "../entities/user";
 import { UserAlreadyExistsException } from "../exceptions/user-already-exists-exception";
+import { inject } from "../registry";
 import type { UserRepository } from "../repository/user-repository";
 
 type Input = {
@@ -13,7 +14,10 @@ type Output = {
 };
 
 export class RegisterUserUseCase {
-  public constructor(private userRepository: UserRepository) {}
+  @inject("userRepository")
+  private userRepository!: UserRepository;
+
+  public constructor() {}
 
   public async execute(input: Input): Promise<Output> {
     const userExists = await this.userRepository.getByEmail(input.email);

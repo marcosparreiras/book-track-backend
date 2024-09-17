@@ -1,15 +1,17 @@
 import { InMemoryUserRepository } from "../../adapters/in-memory-user-repository";
 import { User } from "../entities/user";
 import { UserAlreadyExistsException } from "../exceptions/user-already-exists-exception";
+import { Registry } from "../registry";
 import { RegisterUserUseCase } from "./register-user-use-case";
 
 describe("RegisterUserUseCase", () => {
-  let userRepository: InMemoryUserRepository;
   let sut: RegisterUserUseCase;
+  let userRepository: InMemoryUserRepository;
 
   beforeEach(() => {
+    sut = new RegisterUserUseCase();
     userRepository = new InMemoryUserRepository();
-    sut = new RegisterUserUseCase(userRepository);
+    Registry.getInstance().register("userRepository", userRepository);
   });
 
   it("Should be able to create a commum user", async () => {
