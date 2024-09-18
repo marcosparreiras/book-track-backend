@@ -1,10 +1,12 @@
 import request from "supertest";
-import { InMemoryUserRepository } from "../../adapters/in-memory-user-repository";
+import { InMemoryUserRepository } from "../../adapters/in-memory/in-memory-user-repository";
 import { Registry } from "../../domain/bondaries/registry";
 import { app } from "../app";
+import { Token } from "../../adapters/token";
 
 describe("GET /me", () => {
   beforeEach(() => {
+    Registry.getInstance().register("token", new Token("secret"));
     Registry.getInstance().register(
       "userRepository",
       new InMemoryUserRepository()

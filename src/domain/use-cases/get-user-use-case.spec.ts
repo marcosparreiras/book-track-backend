@@ -1,4 +1,4 @@
-import { InMemoryUserRepository } from "../../adapters/in-memory-user-repository";
+import { InMemoryUserRepository } from "../../adapters/in-memory/in-memory-user-repository";
 import { Registry } from "../bondaries/registry";
 import { User } from "../entities/user";
 import { UserNotFoundException } from "../exceptions/user-not-found-exception";

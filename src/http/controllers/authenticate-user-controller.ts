@@ -1,7 +1,8 @@
 import type { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 import { AuthenticateUserUseCase } from "../../domain/use-cases/authenticate-user-use-case";
-import { Token } from "../auth/token";
+import { Token } from "../../adapters/token";
+import { Registry } from "../../domain/bondaries/registry";
 
 export async function authenticateUserController(
   request: Request,
@@ -19,7 +20,7 @@ export async function authenticateUserController(
       email,
       password,
     });
-    const token = Token.sign({ userId });
+    const token = Registry.getInstance().inject("token").sign({ userId });
     return response.status(201).json({ token });
   } catch (error: unknown) {
     next(error);

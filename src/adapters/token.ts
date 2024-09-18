@@ -1,19 +1,23 @@
 import jwt from "jsonwebtoken";
-import { DomainException } from "../../domain/exceptions/domain-exception";
+import { DomainException } from "../domain/exceptions/domain-exception";
 
 type Payload = {
   userId: string;
 };
 
 export class Token {
-  private static secret: string = "secret";
+  private secret: string;
 
-  static sign(payload: Payload) {
+  public constructor(secret: string) {
+    this.secret = secret;
+  }
+
+  public sign(payload: Payload): string {
     const token = jwt.sign(payload, this.secret, { expiresIn: 60 * 60 * 24 });
     return token;
   }
 
-  static verify(token: string): Payload {
+  public verify(token: string): Payload {
     try {
       const payload = jwt.verify(token, this.secret);
       const payloadIsInvalid =

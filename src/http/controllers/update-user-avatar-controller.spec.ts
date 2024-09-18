@@ -1,11 +1,13 @@
 import request from "supertest";
 import { app } from "../app";
 import { Registry } from "../../domain/bondaries/registry";
-import { InMemoryUserRepository } from "../../adapters/in-memory-user-repository";
-import { InMemoryBucket } from "../../adapters/in-memory-bucket";
+import { InMemoryUserRepository } from "../../adapters/in-memory/in-memory-user-repository";
+import { InMemoryBucket } from "../../adapters/in-memory/in-memory-bucket";
+import { Token } from "../../adapters/token";
 
 describe("PATCH /me/avatar", () => {
   beforeEach(() => {
+    Registry.getInstance().register("token", new Token("secret"));
     Registry.getInstance().register(
       "userRepository",
       new InMemoryUserRepository()

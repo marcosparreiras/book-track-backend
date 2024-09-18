@@ -1,6 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 import { z } from "zod";
-import { Token } from "../auth/token";
+import { Token } from "../../adapters/token";
+import { Registry } from "../../domain/bondaries/registry";
 
 export function tokenAuthenticationMiddlware(
   request: Request,
@@ -13,7 +14,7 @@ export function tokenAuthenticationMiddlware(
   try {
     const { authorization } = requestHeadersSchema.parse(request.headers);
     const token = authorization.split(" ")[1];
-    const { userId } = Token.verify(token);
+    const { userId } = Registry.getInstance().inject("token").verify(token);
     request.userId = userId;
     next();
   } catch (error: unknown) {

@@ -1,3 +1,3 @@
 export interface Bucket {
-  uploadImage(file: Buffer, key: string): Promise<string>;
+  uploadImage(file: Buffer, mimetype: string, key: string): Promise<string>;
 }

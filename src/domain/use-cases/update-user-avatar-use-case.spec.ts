@@ -1,5 +1,5 @@
-import { InMemoryBucket } from "../../adapters/in-memory-bucket";
-import { InMemoryUserRepository } from "../../adapters/in-memory-user-repository";
+import { InMemoryBucket } from "../../adapters/in-memory/in-memory-bucket";
+import { InMemoryUserRepository } from "../../adapters/in-memory/in-memory-user-repository";
 import { Registry } from "../bondaries/registry";
 import { User } from "../entities/user";
 import { InvalidAvatarMimetypeException } from "../exceptions/invalid-avatar-mimetype";

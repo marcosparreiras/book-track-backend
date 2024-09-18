@@ -28,7 +28,11 @@ export class UpdateUserAvatarUseCase {
     if (user === null) {
       throw new UserNotFoundException(input.userId);
     }
-    const avatarUrl = await this.bucket.uploadImage(input.avatar, user.getId());
+    const avatarUrl = await this.bucket.uploadImage(
+      input.avatar,
+      input.mimetype,
+      user.getId()
+    );
     user.setAvatarUrl(avatarUrl);
     await this.userRepository.update(user);
     return;
