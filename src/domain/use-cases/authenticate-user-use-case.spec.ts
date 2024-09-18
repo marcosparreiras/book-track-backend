@@ -1,6 +1,7 @@
 import { InMemoryUserRepository } from "../../adapters/in-memory-user-repository";
 import { Registry } from "../bondaries/registry";
 import { User } from "../entities/user";
+import { InvalidCredentialsException } from "../exceptions/invalid-credentials-exception";
 import { AuthenticateUserUseCase } from "./authenticate-user-use-case";
 
 describe("AuthenticateUserUseCase", () => {
@@ -26,7 +27,7 @@ describe("AuthenticateUserUseCase", () => {
       email: user.getEmail(),
     };
     const output = await sut.execute(input);
-    expect(output.isAuthenticate).toEqual(true);
+    expect(output.userId).toEqual(expect.any(String));
   });
 
   it("Should not authenticate an existent user with invalid password", async () => {
@@ -40,8 +41,9 @@ describe("AuthenticateUserUseCase", () => {
       password: "654321",
       email: user.getEmail(),
     };
-    const output = await sut.execute(input);
-    expect(output.isAuthenticate).toEqual(false);
+    await expect(() => sut.execute(input)).rejects.toBeInstanceOf(
+      InvalidCredentialsException
+    );
   });
 
   it("Should not authenticate an unexistent user", async () => {
@@ -49,7 +51,8 @@ describe("AuthenticateUserUseCase", () => {
       email: "johndoe@example.com",
       password: "123456",
     };
-    const output = await sut.execute(input);
-    expect(output.isAuthenticate).toEqual(false);
+    await expect(() => sut.execute(input)).rejects.toBeInstanceOf(
+      InvalidCredentialsException
+    );
   });
 });

@@ -4,7 +4,7 @@
 
 - [x] Deve ser possível criar um usuário comum;
 - [x] Deve ser possível atualizar o avatar de um usuário;
-- [] Deve ser possível um usuário iniciar uma sessão com seu email e password;
+- [x] Deve ser possível um usuário iniciar uma sessão com seu email e password;
 - [] Deve ser possível um administrador cadastrar um livro;
 - [] Deve ser possível listar os livros cadastrados utilizando parametros de paginação;
 - [] Deve ser possível buscar livros por títulos;

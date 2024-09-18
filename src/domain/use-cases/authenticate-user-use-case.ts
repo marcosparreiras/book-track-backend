@@ -1,5 +1,6 @@
 import { inject } from "../bondaries/registry";
 import type { UserRepository } from "../bondaries/user-repository";
+import { InvalidCredentialsException } from "../exceptions/invalid-credentials-exception";
 
 type Input = {
   email: string;
@@ -7,7 +8,7 @@ type Input = {
 };
 
 type Output = {
-  isAuthenticate: boolean;
+  userId: string;
 };
 
 export class AuthenticateUserUseCase {
@@ -19,12 +20,12 @@ export class AuthenticateUserUseCase {
   public async execute(input: Input): Promise<Output> {
     const user = await this.userRepository.getByEmail(input.email);
     if (user === null) {
-      return { isAuthenticate: false };
+      throw new InvalidCredentialsException();
     }
     const isPasswordValid = user.verifyPassword(input.password);
     if (!isPasswordValid) {
-      return { isAuthenticate: false };
+      throw new InvalidCredentialsException();
     }
-    return { isAuthenticate: true };
+    return { userId: user.getId() };
   }
 }

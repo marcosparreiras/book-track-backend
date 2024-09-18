@@ -10,6 +10,6 @@ export class DomainException extends Error {
 
   public constructor(message: string, status?: number) {
     super(message);
-    this.status = 400;
+    this.status = status ?? 400;
   }
 }
