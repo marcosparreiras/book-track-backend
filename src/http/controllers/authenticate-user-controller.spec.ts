@@ -15,7 +15,7 @@ describe("POST /session", () => {
     const name = "John Doe";
     const email = "johndoe@example.com";
     const password = "123456";
-    await request(app).post("/register").send({ name, email, password });
+    await request(app).post("/users").send({ name, email, password });
     const response = await request(app)
       .post("/session")
       .send({ email, password });

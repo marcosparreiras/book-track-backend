@@ -3,7 +3,7 @@ import { app } from "../app";
 import { Registry } from "../../domain/bondaries/registry";
 import { InMemoryUserRepository } from "../../adapters/in-memory-user-repository";
 
-describe("POST /register", () => {
+describe("POST /users", () => {
   beforeEach(() => {
     Registry.getInstance().register(
       "userRepository",
@@ -17,7 +17,7 @@ describe("POST /register", () => {
       email: "johndoe@example.com",
       password: "123456",
     };
-    const response = await request(app).post("/register").send(requestBody);
+    const response = await request(app).post("/users").send(requestBody);
     expect(response.status).toEqual(201);
     expect(response.body.userId).toEqual(expect.any(String));
   });
@@ -28,7 +28,7 @@ describe("POST /register", () => {
       email: "johndoe@example.com",
       password: "123456",
     };
-    const response = await request(app).post("/register").send(requestBody);
+    const response = await request(app).post("/users").send(requestBody);
     expect(response.status).toEqual(400);
     expect(response.body.message).toBeDefined();
   });
