@@ -6,6 +6,7 @@ import { authenticateUserController } from "./controllers/authenticate-user-cont
 import { getUserController } from "./controllers/get-user-controller";
 import { tokenAuthenticationMiddlware } from "./middlewares/token-authentication";
 import { updateUserAvatarController } from "./controllers/update-user-avatar-controller";
+import { registerBookController } from "./controllers/register-book-controller";
 
 export const app = express();
 app.use(express.json());
@@ -18,4 +19,10 @@ app.patch(
 );
 app.post("/users", registerUserController);
 app.post("/session", authenticateUserController);
+app.post(
+  "/book",
+  tokenAuthenticationMiddlware,
+  multer().single("bookImage"),
+  registerBookController
+);
 app.use(errorHandlerMiddleware);
