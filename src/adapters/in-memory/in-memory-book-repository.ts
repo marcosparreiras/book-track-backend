@@ -9,6 +9,11 @@ export class InMemoryBookRepository implements BookRepository {
     return book ?? null;
   }
 
+  async delete(book: Book): Promise<void> {
+    const index = this.items.findIndex((item) => item.getId() === book.getId());
+    this.items.splice(index, 1);
+  }
+
   async insert(book: Book): Promise<void> {
     this.items.push(book);
   }
