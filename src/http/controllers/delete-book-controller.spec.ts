@@ -8,7 +8,7 @@ import { InMemoryBucket } from "../../adapters/in-memory/in-memory-bucket";
 import { User } from "../../domain/entities/user";
 import { Book } from "../../domain/entities/book";
 
-describe("POST /book", () => {
+describe("DELETE /book/:bookId", () => {
   let bookRepository: InMemoryBookRepository;
   let userRepository: InMemoryUserRepository;
   let bookId: string;
