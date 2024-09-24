@@ -5,10 +5,8 @@ import { InMemoryUserRepository } from "../../adapters/in-memory/in-memory-user-
 
 describe("POST /users", () => {
   beforeEach(() => {
-    Registry.getInstance().register(
-      "userRepository",
-      new InMemoryUserRepository()
-    );
+    const registry = Registry.getInstance();
+    registry.register("userRepository", new InMemoryUserRepository());
   });
 
   it("Should be able to register a user", async () => {

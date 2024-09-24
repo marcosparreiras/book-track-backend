@@ -5,7 +5,12 @@ type Payload = {
   userId: string;
 };
 
-export class Token {
+interface Token {
+  sign(payload: Payload): string;
+  verify(token: string): Payload;
+}
+
+export class JwtToken implements Token {
   private secret: string;
 
   public constructor(secret: string) {

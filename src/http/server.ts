@@ -3,7 +3,7 @@ import { InMemoryUserRepository } from "../adapters/in-memory/in-memory-user-rep
 import { InMemoryBucket } from "../adapters/in-memory/in-memory-bucket";
 import { app } from "./app";
 import { z } from "zod";
-import { Token } from "../adapters/token";
+import { JwtToken } from "../adapters/token";
 
 const envSchema = z.object({
   PORT: z.coerce.number().default(3000),
@@ -14,7 +14,7 @@ const env = envSchema.parse(process.env);
 const registry = Registry.getInstance();
 registry.register("userRepository", new InMemoryUserRepository());
 registry.register("bucket", new InMemoryBucket());
-registry.register("token", new Token(env.JWT_SECRET));
+registry.register("token", new JwtToken(env.JWT_SECRET));
 
 app.listen(env.PORT, () => {
   console.log(`Http server is running on port ${env.PORT}`);

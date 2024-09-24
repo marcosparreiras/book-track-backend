@@ -1,6 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
 import { z } from "zod";
-import { Token } from "../../adapters/token";
 import { Registry } from "../../domain/bondaries/registry";
 
 export function tokenAuthenticationMiddlware(

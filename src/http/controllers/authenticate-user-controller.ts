@@ -1,7 +1,6 @@
 import type { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 import { AuthenticateUserUseCase } from "../../domain/use-cases/authenticate-user-use-case";
-import { Token } from "../../adapters/token";
 import { Registry } from "../../domain/bondaries/registry";
 
 export async function authenticateUserController(

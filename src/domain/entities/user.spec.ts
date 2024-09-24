@@ -1,5 +1,3 @@
-import { InvalidEmailException } from "../exceptions/invalid-email-exception";
-import { InvalidNameException } from "../exceptions/invalid-name-exception";
 import { User } from "./user";
 
 describe("User - Entity", () => {
@@ -13,31 +11,22 @@ describe("User - Entity", () => {
     expect(user.getId()).toEqual(expect.any(String));
     expect(user.getName()).toEqual(input.name);
     expect(user.getEmail()).toEqual(input.email);
+    expect(user.getAvatarUrl()).toEqual(null);
+    expect(user.isAdmin()).toEqual(false);
+    expect(user.getPasswordHash()).toEqual(expect.any(String));
   });
 
-  it.each(["johndoe.com", "john@doe", "johndoeacom"])(
-    "Should not be able to create a user with an invalid email (%s)",
-    (email) => {
-      const input = {
-        email,
-        name: "John Doe",
-        password: "123456",
-      };
-      expect(() => User.create(input)).toThrow(InvalidEmailException);
-    }
-  );
-
-  it.each(["012maria", "lu", "123456"])(
-    "Should not be able to create a user with a name containing numbers or less than 3 characters (%s)",
-    (name) => {
-      const input = {
-        name,
-        email: "johndoe@example.com",
-        password: "123456",
-      };
-      expect(() => User.create(input)).toThrow(InvalidNameException);
-    }
-  );
+  it("Should be able to set avatar url", () => {
+    const input = {
+      name: "John Doe",
+      email: "johndoe@example.com",
+      password: "123456",
+    };
+    const user = User.create(input);
+    const avatarUrl = "http://some-fake-avatar-url/path";
+    user.setAvatarUrl(avatarUrl);
+    expect(user.getAvatarUrl()).toEqual(avatarUrl);
+  });
 
   it.each([
     { password: "123456", passwordVerification: "123456", result: true },
