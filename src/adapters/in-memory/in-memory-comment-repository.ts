@@ -14,7 +14,19 @@ export class InMemoryCommentRepository implements CommentRepository {
     return comment ?? null;
   }
 
+  async getById(commentId: string): Promise<Comment | null> {
+    const comment = this.items.find((item) => item.getId() === commentId);
+    return comment ?? null;
+  }
+
   async insert(comment: Comment): Promise<void> {
     this.items.push(comment);
+  }
+
+  async delete(comment: Comment): Promise<void> {
+    const index = this.items.findIndex(
+      (item) => item.getId() === comment.getId()
+    );
+    this.items.splice(index, 1);
   }
 }
