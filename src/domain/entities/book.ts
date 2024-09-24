@@ -24,16 +24,32 @@ export class Book {
     return this.title;
   }
 
+  public setTitle(title: string): void {
+    this.title = title;
+  }
+
   public getAuthor(): string {
     return this.author.toString();
+  }
+
+  public setAuthor(author: string): void {
+    this.author = new Name(author);
   }
 
   public getDescription(): string {
     return this.description;
   }
 
+  public setDescription(description: string): void {
+    this.description = description;
+  }
+
   public getPublishedAt(): Date {
     return this.publishedAt;
+  }
+
+  public setPublishedAt(publisehdAt: string): void {
+    this.publishedAt = new Date(publisehdAt);
   }
 
   public getImageUrl(): string | null {
