@@ -4,7 +4,6 @@ import { Registry } from "../../domain/bondaries/registry";
 import { app } from "../app";
 import { JwtToken } from "../../adapters/token";
 import { InMemoryBookRepository } from "../../adapters/in-memory/in-memory-book-repository";
-import { InMemoryBucket } from "../../adapters/in-memory/in-memory-bucket";
 import { User } from "../../domain/entities/user";
 import { Book } from "../../domain/entities/book";
 
@@ -20,7 +19,6 @@ describe("PUT /book/:bookId", () => {
     registry.register("token", new JwtToken("secret"));
     registry.register("userRepository", userRepository);
     registry.register("bookRepository", bookRepository);
-    registry.register("bucket", new InMemoryBucket());
     const admin = User.create({
       email: "johndoe@example.com",
       name: "John Doe",

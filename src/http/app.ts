@@ -9,6 +9,7 @@ import { updateUserAvatarController } from "./controllers/update-user-avatar-con
 import { registerBookController } from "./controllers/register-book-controller";
 import { updateBookController } from "./controllers/update-book-controller";
 import { deleteBookController } from "./controllers/delete-book-controller";
+import { createCommentController } from "./controllers/create-comment-controller";
 
 export const app = express();
 app.use(express.json());
@@ -29,4 +30,9 @@ app.post(
 );
 app.put("/book/:bookId", tokenAuthenticationMiddlware, updateBookController);
 app.delete("/book/:bookId", tokenAuthenticationMiddlware, deleteBookController);
+app.post(
+  "/book/:bookId/comment",
+  tokenAuthenticationMiddlware,
+  createCommentController
+);
 app.use(errorHandlerMiddleware);
