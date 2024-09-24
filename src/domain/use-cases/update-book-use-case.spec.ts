@@ -44,7 +44,7 @@ describe("UpdateBookUseCase", () => {
       bookId: book.getId(),
       title: "Patterns of Enterprise Application Architecture",
       author: "Janny Doe Albert",
-      desription: "Some fake book description",
+      description: "Some fake book description",
       publishedAt: "2021-01-01",
       userId: admin.getId(),
     };
@@ -52,7 +52,7 @@ describe("UpdateBookUseCase", () => {
     expect(bookRespository.items).toHaveLength(1);
     expect(book.getAuthor()).toEqual(input.author);
     expect(book.getTitle()).toEqual(input.title);
-    expect(book.getDescription()).toEqual(input.desription);
+    expect(book.getDescription()).toEqual(input.description);
     expect(book.getPublishedAt().toISOString()).toEqual(
       new Date(input.publishedAt).toISOString()
     );
@@ -76,7 +76,7 @@ describe("UpdateBookUseCase", () => {
       bookId: book.getId(),
       title: "Patterns of Enterprise Application Architecture",
       author: "Janny Doe Albert",
-      desription: "Some fake book description",
+      description: "Some fake book description",
       publishedAt: "2021-01-01",
       userId: user.getId(),
     };
@@ -101,7 +101,7 @@ describe("UpdateBookUseCase", () => {
       bookId: "UNEXISTENT-BOOK-ID",
       title: "Patterns of Enterprise Application Architecture",
       author: "Janny Doe Albert",
-      desription: "Some fake book description",
+      description: "Some fake book description",
       publishedAt: "2021-01-01",
       userId: admin.getId(),
     };

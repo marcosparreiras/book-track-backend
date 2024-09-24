@@ -7,6 +7,7 @@ import { getUserController } from "./controllers/get-user-controller";
 import { tokenAuthenticationMiddlware } from "./middlewares/token-authentication";
 import { updateUserAvatarController } from "./controllers/update-user-avatar-controller";
 import { registerBookController } from "./controllers/register-book-controller";
+import { updateBookController } from "./controllers/update-book-controller";
 
 export const app = express();
 app.use(express.json());
@@ -25,4 +26,5 @@ app.post(
   multer().single("bookImage"),
   registerBookController
 );
+app.put("/book/:bookId", tokenAuthenticationMiddlware, updateBookController);
 app.use(errorHandlerMiddleware);

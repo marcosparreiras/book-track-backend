@@ -8,7 +8,7 @@ type Input = {
   bookId: string;
   title: string;
   author: string;
-  desription: string;
+  description: string;
   publishedAt: string;
   userId: string;
 };
@@ -33,7 +33,7 @@ export class UpdateBookUseCase {
     }
     book.setTitle(input.title);
     book.setAuthor(input.author);
-    book.setDescription(input.desription);
+    book.setDescription(input.description);
     book.setPublishedAt(input.publishedAt);
     await this.bookRepository.update(book);
     return;
