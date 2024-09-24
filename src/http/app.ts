@@ -8,6 +8,7 @@ import { tokenAuthenticationMiddlware } from "./middlewares/token-authentication
 import { updateUserAvatarController } from "./controllers/update-user-avatar-controller";
 import { registerBookController } from "./controllers/register-book-controller";
 import { updateBookController } from "./controllers/update-book-controller";
+import { deleteBookController } from "./controllers/delete-book-controller";
 
 export const app = express();
 app.use(express.json());
@@ -27,4 +28,5 @@ app.post(
   registerBookController
 );
 app.put("/book/:bookId", tokenAuthenticationMiddlware, updateBookController);
+app.delete("/book/:bookId", tokenAuthenticationMiddlware, deleteBookController);
 app.use(errorHandlerMiddleware);
