@@ -1,5 +1,5 @@
-import type { User } from "../domain/entities/user";
-import type { UserRepository } from "../domain/bondaries/user-repository";
+import type { UserRepository } from "../../domain/bondaries/user-repository";
+import type { User } from "../../domain/entities/user";
 
 export class InMemoryUserRepository implements UserRepository {
   public items: User[] = [];

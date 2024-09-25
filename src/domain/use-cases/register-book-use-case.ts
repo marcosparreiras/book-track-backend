@@ -5,7 +5,6 @@ import { Book } from "../entities/book";
 import { InvalidAvatarMimetypeException } from "../exceptions/invalid-avatar-mimetype";
 import type { UserRepository } from "../bondaries/user-repository";
 import { NotAuthorizedException } from "../exceptions/not-authorized-exception";
-import { log } from "console";
 
 type Input = {
   userId: string;

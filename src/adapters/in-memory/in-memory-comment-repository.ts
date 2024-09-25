@@ -14,6 +14,11 @@ export class InMemoryCommentRepository implements CommentRepository {
     return comment ?? null;
   }
 
+  async getManyByBookId(bookId: string): Promise<Comment[]> {
+    const comments = this.items.filter((item) => item.getBookId() === bookId);
+    return comments;
+  }
+
   async getById(commentId: string): Promise<Comment | null> {
     const comment = this.items.find((item) => item.getId() === commentId);
     return comment ?? null;

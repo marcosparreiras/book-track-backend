@@ -2,7 +2,7 @@ import type { NextFunction, Request, Response } from "express";
 import { z } from "zod";
 import { Registry } from "../../domain/bondaries/registry";
 
-export function tokenAuthenticationMiddlware(
+export function tokenAuthenticationMiddleware(
   request: Request,
   _response: Response,
   next: NextFunction
