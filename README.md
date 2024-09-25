@@ -13,4 +13,4 @@
 - [x] Deve ser possível um usuário deletar os seu comentario em um livro;
 - [] Deve ser possível listar os livros cadastrados utilizando parametros de paginação;
 - [] Deve ser possível buscar livros por títulos;
-- [] Deve ser possível buscar um livro por seu id, o livro deve ser recuperado com os seus comentários e e dados dos usuários nome e avatar;
+- [x] Deve ser possível buscar um livro por seu id, o livro deve ser recuperado com os seus comentários e os dados dos usuários;

@@ -11,9 +11,12 @@ import { updateBookController } from "./controllers/update-book-controller";
 import { deleteBookController } from "./controllers/delete-book-controller";
 import { createCommentController } from "./controllers/create-comment-controller";
 import { deleteCommentController } from "./controllers/delete-comment-controller";
+import { getBookController } from "./controllers/get-book-controller";
 
 export const app = express();
 app.use(express.json());
+app.post("/users", registerUserController);
+app.post("/session", authenticateUserController);
 app.get("/me", tokenAuthenticationMiddleware, getUserController);
 app.patch(
   "/me/avatar",
@@ -21,14 +24,13 @@ app.patch(
   multer().single("avatar"),
   updateUserAvatarController
 );
-app.post("/users", registerUserController);
-app.post("/session", authenticateUserController);
 app.post(
   "/book",
   tokenAuthenticationMiddleware,
   multer().single("bookImage"),
   registerBookController
 );
+app.get("/book/:bookId", getBookController);
 app.put("/book/:bookId", tokenAuthenticationMiddleware, updateBookController);
 app.delete(
   "/book/:bookId",
@@ -40,7 +42,7 @@ app.post(
   tokenAuthenticationMiddleware,
   createCommentController
 );
-app.use(
+app.delete(
   "/comment/:commentId",
   tokenAuthenticationMiddleware,
   deleteCommentController

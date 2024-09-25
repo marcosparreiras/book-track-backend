@@ -2,6 +2,7 @@ import type { BookRepository } from "../bondaries/book-repository";
 import type { CommentRepository } from "../bondaries/comment-repository";
 import { inject } from "../bondaries/registry";
 import type { UserRepository } from "../bondaries/user-repository";
+import type { Comment } from "../entities/comment";
 import { BookNotFoundException } from "../exceptions/book-not-found-exception";
 
 type Input = {
@@ -44,7 +45,23 @@ export class GetBookUseCase {
       throw new BookNotFoundException(input.bookId);
     }
     const comments = await this.commentRepository.getManyByBookId(input.bookId);
-    const commentsWithUserData = await Promise.all(
+    return {
+      book: {
+        id: book.getId(),
+        title: book.getTitle(),
+        author: book.getAuthor(),
+        description: book.getDescription(),
+        publishedAt: book.getPublishedAt(),
+        imageUrl: book.getImageUrl(),
+        comments: await this.enrichCommentsWithUserData(comments),
+      },
+    };
+  }
+
+  private async enrichCommentsWithUserData(
+    comments: Comment[]
+  ): Promise<Output["book"]["comments"]> {
+    return Promise.all(
       comments.map(async (comment) => {
         const user = await this.userRepository.getById(comment.getUserId());
         return {
@@ -56,16 +73,5 @@ export class GetBookUseCase {
         };
       })
     );
-    return {
-      book: {
-        id: book.getId(),
-        title: book.getTitle(),
-        author: book.getAuthor(),
-        description: book.getDescription(),
-        publishedAt: book.getPublishedAt(),
-        imageUrl: book.getImageUrl(),
-        comments: commentsWithUserData,
-      },
-    };
   }
 }
