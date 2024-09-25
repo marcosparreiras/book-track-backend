@@ -10,6 +10,7 @@ import { registerBookController } from "./controllers/register-book-controller";
 import { updateBookController } from "./controllers/update-book-controller";
 import { deleteBookController } from "./controllers/delete-book-controller";
 import { createCommentController } from "./controllers/create-comment-controller";
+import { deleteCommentController } from "./controllers/delete-comment-controller";
 
 export const app = express();
 app.use(express.json());
@@ -34,5 +35,10 @@ app.post(
   "/book/:bookId/comment",
   tokenAuthenticationMiddlware,
   createCommentController
+);
+app.use(
+  "/comment/:commentId",
+  tokenAuthenticationMiddlware,
+  deleteCommentController
 );
 app.use(errorHandlerMiddleware);
