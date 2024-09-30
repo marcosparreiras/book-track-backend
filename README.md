@@ -11,6 +11,11 @@
 - [x] Deve ser possível um administrador deletar um livro;
 - [x] Deve ser possivel um usuário criar apenas um único comentário por livro;
 - [x] Deve ser possível um usuário deletar os seu comentario em um livro;
-- [] Deve ser possível listar os livros cadastrados utilizando parametros de paginação;
-- [] Deve ser possível buscar livros por títulos;
+- [x] Deve ser possível listar os livros cadastrados utilizando parametros de paginação;
+- [x] Deve ser possível buscar livros por títulos;
 - [x] Deve ser possível buscar um livro por seu id, o livro deve ser recuperado com os seus comentários e os dados dos usuários;
+
+## Requisitos não funcionais
+
+- [] Deve persistir dados em um banco de dados PostgreSQL
+- [] Deve persistir imagens em um bucket S3;
