@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS users (
   name TEXT NOT NULL,
   email TEXT NOT NULL,
   password TEXT NOT NULL,
-  avatar_url TEXT NOT NULL,
+  avatar_url TEXT,
   is_admin BOOLEAN NOT NULL DEFAULT FALSE
 );
 
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS books (
   title TEXT NOT NULL,
   author TEXT NOT NULL,
   description TEXT NOT NULL,
-  image_url TEXT NOT NULL,
+  image_url TEXT,
   published_at TIMESTAMP NOT NULL
 );
 

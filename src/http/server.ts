@@ -8,6 +8,9 @@ import { JwtToken } from "../adapters/token";
 const envSchema = z.object({
   PORT: z.coerce.number().default(3000),
   JWT_SECRET: z.string().default("secret"),
+  DATABASE_URL: z
+    .string()
+    .default("postgres://admin:admin@localhost:5432/booktrack"),
 });
 const env = envSchema.parse(process.env);
 
