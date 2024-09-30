@@ -10,7 +10,14 @@ type Input = {
 };
 
 type Output = {
-  books: Book[];
+  books: {
+    id: string;
+    title: string;
+    author: string;
+    description: string;
+    publishedAt: Date;
+    imageUrl: string | null;
+  }[];
 };
 
 export class GetBooksUseCase {
@@ -34,6 +41,15 @@ export class GetBooksUseCase {
         title: input.title,
       },
     });
-    return { books };
+    return {
+      books: books.map((book) => ({
+        author: book.getAuthor(),
+        description: book.getDescription(),
+        id: book.getId(),
+        imageUrl: book.getImageUrl(),
+        publishedAt: book.getPublishedAt(),
+        title: book.getTitle(),
+      })),
+    };
   }
 }

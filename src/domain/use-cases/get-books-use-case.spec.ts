@@ -102,7 +102,17 @@ describe("GetBooksUseCase", () => {
     });
     expect(search01.books).toHaveLength(books.length);
     expect(search02.books).toHaveLength(2);
-    expect(search02.books[0].getTitle()).toContain("a0");
+    expect(search02.books[0].title).toContain("a0");
+    expect(search01.books[0]).toEqual(
+      expect.objectContaining({
+        author: expect.any(String),
+        description: expect.any(String),
+        id: expect.any(String),
+        imageUrl: null,
+        publishedAt: expect.any(Date),
+        title: expect.any(String),
+      })
+    );
   });
 
   it("Should not be able to set a page size less then 1", async () => {

@@ -12,6 +12,7 @@ import { deleteBookController } from "./controllers/delete-book-controller";
 import { createCommentController } from "./controllers/create-comment-controller";
 import { deleteCommentController } from "./controllers/delete-comment-controller";
 import { getBookController } from "./controllers/get-book-controller";
+import { getBooksController } from "./controllers/get-books-controller";
 
 export const app = express();
 app.use(express.json());
@@ -30,6 +31,7 @@ app.post(
   multer().single("bookImage"),
   registerBookController
 );
+app.get("/book", getBooksController);
 app.get("/book/:bookId", getBookController);
 app.put("/book/:bookId", tokenAuthenticationMiddleware, updateBookController);
 app.delete(
