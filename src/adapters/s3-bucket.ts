@@ -4,23 +4,30 @@ import type { Bucket } from "../domain/bondaries/bucket";
 export class S3Bucket implements Bucket {
   private client: S3Client;
   private bucket: string;
-  private region: string;
+  private bucketRegion: string;
 
   public constructor(
-    region: string,
-    accessKey: string,
-    secretKey: string,
-    bucketName: string
+    bucketName: string,
+    bucketRegion: string,
+    config?: {
+      region: string;
+      accessKey: string;
+      secretKey: string;
+    }
   ) {
-    this.client = new S3Client({
-      region,
-      credentials: {
-        accessKeyId: accessKey,
-        secretAccessKey: secretKey,
-      },
-    });
+    if (config) {
+      this.client = new S3Client({
+        region: config.region,
+        credentials: {
+          accessKeyId: config.accessKey,
+          secretAccessKey: config.secretKey,
+        },
+      });
+    } else {
+      this.client = new S3Client();
+    }
     this.bucket = bucketName;
-    this.region = region;
+    this.bucketRegion = bucketRegion;
   }
 
   async uploadImage(
@@ -35,6 +42,6 @@ export class S3Bucket implements Bucket {
       ContentType: mimetype,
     });
     await this.client.send(command);
-    return `https://${this.bucket}.s3.${this.region}.amazonaws.com/${key}`;
+    return `https://${this.bucket}.s3.${this.bucketRegion}.amazonaws.com/${key}`;
   }
 }

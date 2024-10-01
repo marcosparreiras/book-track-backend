@@ -17,9 +17,9 @@
 
 ## Requisitos não funcionais
 
-- [] Deve persistir dados em um banco de dados PostgreSQL;
-- [] Deve persistir imagens em um bucket S3;
-- [] Deve possuir testes de integração e unidade;
+- [x] Deve persistir dados em um banco de dados PostgreSQL;
+- [x] Deve persistir imagens em um bucket S3;
+- [x] Deve possuir testes de integração e unidade;
 - [] Deve ser disponibilizado por container Docker;
 - [] Deve ser implantado na AWS;
 - [] Deve possuir pipeline de CI/CD no Github Actions;
