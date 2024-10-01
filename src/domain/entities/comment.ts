@@ -8,6 +8,14 @@ interface CreateCommentDTO {
   rate: number;
 }
 
+interface LoadCommentDTO {
+  id: string;
+  userId: string;
+  bookId: string;
+  content: string;
+  rate: number;
+}
+
 export class Comment {
   private id: UUID;
   private userId: UUID;
@@ -53,6 +61,14 @@ export class Comment {
     const id = UUID.generate();
     const userId = UUID.laod(input.userId);
     const bookId = UUID.laod(input.bookId);
+    const rate = new CommentRate(input.rate);
+    return new Comment(id, userId, bookId, input.content, rate);
+  }
+
+  public static laod(input: LoadCommentDTO): Comment {
+    const id = UUID.laod(input.id);
+    const bookId = UUID.laod(input.bookId);
+    const userId = UUID.laod(input.userId);
     const rate = new CommentRate(input.rate);
     return new Comment(id, userId, bookId, input.content, rate);
   }
