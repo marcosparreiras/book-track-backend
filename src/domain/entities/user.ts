@@ -9,6 +9,15 @@ type CreateUserDTO = {
   password: string;
 };
 
+type LoadUserDTO = {
+  id: string;
+  name: string;
+  email: string;
+  password: string;
+  avatarUrl: string | null;
+  isAdmin: boolean;
+};
+
 export class User {
   private id: UUID;
   private name: Name;
@@ -73,5 +82,13 @@ export class User {
     const avatarUrl = null;
     const isAdmin = false;
     return new User(id, name, email, password, avatarUrl, isAdmin);
+  }
+
+  public static load(input: LoadUserDTO): User {
+    const id = UUID.laod(input.id);
+    const name = new Name(input.name);
+    const email = new Email(input.email);
+    const password = Password.load(input.password);
+    return new User(id, name, email, password, input.avatarUrl, input.isAdmin);
   }
 }
