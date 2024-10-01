@@ -59,13 +59,14 @@ export class PostgresUserRepository implements UserRepository {
 
   async update(user: User): Promise<void> {
     await this.connection.query(
-      `UPDATE users SET name = $1, email = $2, password = $3, avatar_url = $4, is_admin = $5`,
+      `UPDATE users SET name = $1, email = $2, password = $3, avatar_url = $4, is_admin = $5 WHERE id = $6`,
       [
         user.getName(),
         user.getEmail(),
         user.getPasswordHash(),
         user.getAvatarUrl(),
         user.isAdmin(),
+        user.getId(),
       ]
     );
   }

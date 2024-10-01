@@ -8,6 +8,15 @@ interface CreateBookDTO {
   publishedAt: string;
 }
 
+interface LoadBookDTO {
+  id: string;
+  title: string;
+  author: string;
+  description: string;
+  publishedAt: Date;
+  imageUrl: string | null;
+}
+
 export class Book {
   private id: UUID;
   private title: string;
@@ -87,6 +96,19 @@ export class Book {
       input.description,
       publishedAt,
       null
+    );
+  }
+
+  public static load(input: LoadBookDTO): Book {
+    const id = UUID.laod(input.id);
+    const author = new Name(input.author);
+    return new Book(
+      id,
+      input.title,
+      author,
+      input.description,
+      input.publishedAt,
+      input.imageUrl
     );
   }
 }
