@@ -1,3 +1,4 @@
+import cors from "cors";
 import express from "express";
 import multer from "multer";
 import { errorHandlerMiddleware } from "./middlewares/error-handler";
@@ -15,6 +16,7 @@ import { getBookController } from "./controllers/get-book-controller";
 import { getBooksController } from "./controllers/get-books-controller";
 
 export const app = express();
+app.use(cors());
 app.use(express.json());
 app.post("/users", registerUserController);
 app.post("/session", authenticateUserController);
@@ -49,4 +51,7 @@ app.delete(
   tokenAuthenticationMiddleware,
   deleteCommentController
 );
+app.get("/health", (_request, response) => {
+  return response.status(200).json({ health: true });
+});
 app.use(errorHandlerMiddleware);

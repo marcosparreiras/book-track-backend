@@ -22,6 +22,8 @@ COPY --from=build /usr/src/app/dist ./dist
 
 COPY --from=build /usr/src/app/node_modules ./node_modules
 
-EXPOSE 3000
+ENV PORT=80
+
+EXPOSE 80
 
 CMD ["npm", "run", "start"]

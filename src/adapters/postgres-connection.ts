@@ -16,6 +16,9 @@ export class PgConnection implements DbConnection {
       password: url.password,
       database: url.pathname.substring(1),
       port: parseInt(url.port),
+      //ssl: {
+       // rejectUnauthorized: false,
+      //},
     });
   }
 

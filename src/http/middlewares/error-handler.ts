@@ -8,6 +8,7 @@ export function errorHandlerMiddleware(
   response: Response,
   _next: NextFunction
 ) {
+  console.log(error);
   if (error instanceof DomainException) {
     return response
       .status(error.getStatus())

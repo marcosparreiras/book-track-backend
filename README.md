@@ -20,6 +20,6 @@
 - [x] Deve persistir dados em um banco de dados PostgreSQL;
 - [x] Deve persistir imagens em um bucket S3;
 - [x] Deve possuir testes de integração e unidade;
-- [] Deve ser disponibilizado por container Docker;
-- [] Deve ser implantado na AWS;
+- [x] Deve ser disponibilizado por container Docker;
+- [x] Deve ser implantado na AWS;
 - [] Deve possuir pipeline de CI/CD no Github Actions;

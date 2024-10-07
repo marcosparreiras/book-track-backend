@@ -13,8 +13,10 @@ const envSchema = z.object({
   JWT_SECRET: z.string().default("secret"),
   DATABASE_URL: z
     .string()
-    .default("postgres://admin:admin@localhost:5432/booktrack"),
-  BUCKET_NAME: z.string().default("marcos-my-pi-test"),
+    .default(
+      "postgres://admin:admin@localhost:5432/booktrack"
+    ),
+  BUCKET_NAME: z.string().default("marcos-booktrak-demo"),
   BUCKET_REGION: z.string().default("us-east-1"),
 });
 const env = envSchema.parse(process.env);
