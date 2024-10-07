@@ -40,7 +40,6 @@ export class PostgresBookRepository implements BookRepository {
          LIMIT $1 OFFSET $2`,
         [pageSize, pageSize * (page - 1)]
       );
-      console.log(queryResults);
     }
     return queryResults.map(this.toDomain);
   }

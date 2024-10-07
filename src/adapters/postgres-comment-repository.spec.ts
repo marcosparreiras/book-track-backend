@@ -11,7 +11,7 @@ describe("ProstgresCommentRepository", () => {
   const connectionString = "postgres://admin:admin@localhost:5432/booktrack";
   const dbConnection = new PgConnection(connectionString);
   const registry = Registry.getInstance();
-  registry.register("dbConnetion", dbConnection);
+  registry.register("dbConnection", dbConnection);
   let bookId: string;
   let userId: string;
 

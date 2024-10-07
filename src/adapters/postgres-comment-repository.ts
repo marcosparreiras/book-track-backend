@@ -4,7 +4,7 @@ import { Comment } from "../domain/entities/comment";
 import type { DbConnection } from "./postgres-connection";
 
 export class PostgresCommentRepository implements CommentRepository {
-  @inject("dbConnetion")
+  @inject("dbConnection")
   private connection!: DbConnection;
 
   private toDomain(data: any): Comment {
