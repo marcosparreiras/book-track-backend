@@ -23,6 +23,7 @@ type Output = {
       rate: number;
       userName: string | null;
       userAvatar: string | null;
+      userId: string | null;
     }[];
   };
 };
@@ -70,6 +71,7 @@ export class GetBookUseCase {
           rate: comment.getRate(),
           userName: user?.getName() ?? null,
           userAvatar: user?.getAvatarUrl() ?? null,
+          userId: user?.getId() ?? null,
         };
       })
     );

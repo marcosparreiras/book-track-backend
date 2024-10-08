@@ -22,8 +22,8 @@ CREATE TABLE comments (
  book_id TEXT NOT NULL, 
  content TEXT NOT NULL,
  rate INTEGER NOT NULL,
- CONSTRAINT user_fk FOREIGN KEY (user_id) REFERENCES users(id),
- CONSTRAINT book_fk FOREIGN KEY (book_id) REFERENCES books(id)
+ CONSTRAINT user_fk FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+ CONSTRAINT book_fk FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
 );
 
 INSERT INTO users (id, name, email, password, avatar_url, is_admin)
