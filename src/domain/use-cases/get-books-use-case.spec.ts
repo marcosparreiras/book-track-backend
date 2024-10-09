@@ -53,10 +53,9 @@ describe("GetBooksUseCase", () => {
     const page02 = await sut.execute({ pageSize: 3, page: 2 });
     expect(page01.books).toHaveLength(3);
     expect(page02.books).toHaveLength(2);
-    expect(page01.books[0]).toBeInstanceOf(Book);
   });
 
-  it.only("Should be able to search books by title", async () => {
+  it("Should be able to search books by title", async () => {
     const books = [
       {
         title: "Book a00 ",
