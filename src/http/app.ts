@@ -14,44 +14,54 @@ import { createCommentController } from "./controllers/create-comment-controller
 import { deleteCommentController } from "./controllers/delete-comment-controller";
 import { getBookController } from "./controllers/get-book-controller";
 import { getBooksController } from "./controllers/get-books-controller";
+import { Logger } from "../domain/bondaries/logger";
+import { httpLoggerDecorator } from "./middlewares/http-logger-decorator";
 
 export const app = express();
 app.use(cors());
 app.use(express.json());
-app.post("/users", registerUserController);
-app.post("/session", authenticateUserController);
-app.get("/me", tokenAuthenticationMiddleware, getUserController);
+app.get("/health", (_request, response) => {
+  return response.status(200).json({ health: true });
+});
+app.post("/users", httpLoggerDecorator(registerUserController));
+app.post("/session", httpLoggerDecorator(authenticateUserController));
+app.get(
+  "/me",
+  tokenAuthenticationMiddleware,
+  httpLoggerDecorator(getUserController)
+);
 app.patch(
   "/me/avatar",
   tokenAuthenticationMiddleware,
   multer().single("avatar"),
-  updateUserAvatarController
+  httpLoggerDecorator(updateUserAvatarController)
 );
 app.post(
   "/book",
   tokenAuthenticationMiddleware,
   multer().single("bookImage"),
-  registerBookController
+  httpLoggerDecorator(registerBookController)
 );
-app.get("/book", getBooksController);
+app.get("/book", httpLoggerDecorator(getBooksController));
 app.get("/book/:bookId", getBookController);
-app.put("/book/:bookId", tokenAuthenticationMiddleware, updateBookController);
+app.put(
+  "/book/:bookId",
+  tokenAuthenticationMiddleware,
+  httpLoggerDecorator(updateBookController)
+);
 app.delete(
   "/book/:bookId",
   tokenAuthenticationMiddleware,
-  deleteBookController
+  httpLoggerDecorator(deleteBookController)
 );
 app.post(
   "/book/:bookId/comment",
   tokenAuthenticationMiddleware,
-  createCommentController
+  httpLoggerDecorator(createCommentController)
 );
 app.delete(
   "/comment/:commentId",
   tokenAuthenticationMiddleware,
-  deleteCommentController
+  httpLoggerDecorator(deleteCommentController)
 );
-app.get("/health", (_request, response) => {
-  return response.status(200).json({ health: true });
-});
 app.use(errorHandlerMiddleware);

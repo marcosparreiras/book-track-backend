@@ -22,4 +22,5 @@
 - [x] Deve possuir testes de integração e unidade;
 - [x] Deve ser disponibilizado por container Docker;
 - [x] Deve ser implantado na AWS;
+- [x] Deve possuir logs estrututados;
 - [] Deve possuir pipeline de CI/CD no Github Actions;
