@@ -39,7 +39,7 @@ jobs:
         run: npm run test:http
 
       - name: Run integrations tests
-        run: DATABASE_URL=postgres://admin:admin@postgres:5432/booktrack npm run test:integration
+        run: npm run test:integration
 
   build-and-push:
     name: Build project image and push to a registry
