@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: marcosparreiras/booktrack:${{ steps.generate_commit_tag.outputs.sha }},marcosparreiras/seidor-teste-app:latest
+          tags: marcosparreiras/booktrack:${{ steps.generate_commit_tag.outputs.sha }},marcosparreiras/booktrack:latest
 
   deploy:
     name: Deploy the new image on ecs service

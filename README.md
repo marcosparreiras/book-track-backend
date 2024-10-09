@@ -23,4 +23,4 @@
 - [x] Deve ser disponibilizado por container Docker;
 - [x] Deve ser implantado na AWS;
 - [x] Deve possuir logs estrututados;
-- [] Deve possuir pipeline de CI/CD no Github Actions;
+- [x] Deve possuir pipeline de CI/CD no Github Actions;
