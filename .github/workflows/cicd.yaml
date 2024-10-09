@@ -16,8 +16,11 @@ jobs:
           POSTGRES_USER: admin
           POSTGRES_DB: booktrack
           POSTGRES_PASSWORD: admin
-        volumes:
-          - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+        options: >-
+          --health-cmd "pg_isready -U admin"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 3
 
     steps:
       - name: Checkout repository
