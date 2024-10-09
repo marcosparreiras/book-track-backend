@@ -6,24 +6,6 @@ jobs:
   run-tests:
     name: Run Tests
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres
-        ports:
-          - 5432:5432
-        env:
-          POSTGRES_USER: admin
-          POSTGRES_DB: booktrack
-          POSTGRES_PASSWORD: admin
-        volumes:
-          - ${{ github.workspace }}/.github/database:/docker-entrypoint-initdb.d
-        options: >-
-          --health-cmd "pg_isready -U admin"
-          --health-interval 5s
-          --health-timeout 5s
-          --health-retries 3
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -42,6 +24,22 @@ jobs:
 
       - name: Run http layer tests
         run: npm run test:http
+
+      - name: Set up PostgreSQL
+        uses: docker://postgres
+        id: postgres
+        env:
+          POSTGRES_USER: admin
+          POSTGRES_DB: booktrack
+          POSTGRES_PASSWORD: admin
+        with:
+          args: >
+            -p 5432:5432
+            -v ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+            --health-cmd "pg_isready -U admin"
+            --health-interval 5s
+            --health-timeout 5s
+            --health-retries 3
 
       - name: Run integrations tests
         run: npm run test:integration
