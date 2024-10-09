@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      postgress:
+      postgres:
         image: postgres
         ports:
           - 5432:5432
@@ -39,7 +39,7 @@ jobs:
         run: npm run test:http
 
       - name: Run integrations tests
-        run: npm run test:integration
+        run: DATABASE_URL=postgres://admin:admin@postgres:5432/booktrack npm run test:integration
 
   build-and-push:
     name: Build project image and push to a registry
