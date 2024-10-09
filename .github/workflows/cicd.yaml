@@ -16,6 +16,8 @@ jobs:
           POSTGRES_USER: admin
           POSTGRES_DB: booktrack
           POSTGRES_PASSWORD: admin
+        volumes:
+          - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
 
     steps:
       - name: Checkout repository
