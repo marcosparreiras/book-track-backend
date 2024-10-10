@@ -95,6 +95,6 @@ CREATE TABLE comments (
 # Execute a aplicação localmente
 
 ```bash
-npm insatall # Para instalar as dependências
+npm install # Para instalar as dependências
 npm run dev # Para executar a aplicação em modo de desnvolvimento
 ```
