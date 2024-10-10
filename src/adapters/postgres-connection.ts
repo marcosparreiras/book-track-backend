@@ -1,4 +1,4 @@
-import { Pool, type PoolClient } from "pg";
+import { Pool, type PoolClient, type PoolConfig } from "pg";
 import { Logger } from "../domain/bondaries/logger";
 
 export interface DbConnection {
@@ -11,16 +11,19 @@ export class PgConnection implements DbConnection {
 
   public constructor(connectionString: string) {
     const url = new URL(connectionString);
-    this.pool = new Pool({
+    const config: PoolConfig = {
       host: url.hostname,
       user: url.username,
       password: url.password,
       database: url.pathname.substring(1),
       port: parseInt(url.port),
-      ssl: {
+    };
+    if (!process.env.VITEST) {
+      config["ssl"] = {
         rejectUnauthorized: false,
-      },
-    });
+      };
+    }
+    this.pool = new Pool(config);
   }
 
   async query(sql: string, params?: any[]): Promise<any[]> {
