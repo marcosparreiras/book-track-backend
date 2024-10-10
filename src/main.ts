@@ -32,5 +32,5 @@ const logger = Logger.getInstance();
 logger.setMode(env.LOGGER_MODE);
 
 app.listen(env.PORT, () => {
-  logger.info(`Http server is running on port ${env.PORT}`);
+  logger.info(`Http server is running on port ${env.PORT} 🌱`);
 });
