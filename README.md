@@ -4,6 +4,12 @@ Projeto desenvolvido para a disciplina **Projetos Integrados** do curso de **Des
 
 O objetivo do BookTrack é facilitar o gerenciamento de livros e comentários, oferecendo rotas para registrar, atualizar, visualizar e deletar livros, bem como adicionar e remover comentários.
 
+## Repositórios relacionados
+
+[Repositório do frontend](https://github.com/marcosparreiras/book-track-frontend)
+
+[Repositório da iac](https://github.com/marcosparreiras/book-track-iac)
+
 ## Requisitos funcionais
 
 - [x] Deve ser possível criar um usuário comum;
@@ -84,4 +90,11 @@ CREATE TABLE comments (
  CONSTRAINT user_fk FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
  CONSTRAINT book_fk FOREIGN KEY (book_id) REFERENCES books(id) ON DELETE CASCADE
 );
+```
+
+# Execute a aplicação localmente
+
+```bash
+npm insatall # Para instalar as dependências
+npm run dev # Para executar a aplicação em modo de desnvolvimento
 ```
